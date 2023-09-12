@@ -1,5 +1,8 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:tuya_app_sdk_plugin/tuya_app_sdk_plugin.dart';
 import 'package:tuya_app_sdk_plugin_example/cubit/alert_dialog_cubit.dart';
 import 'package:tuya_app_sdk_plugin_example/cubit/ui_blocking_cubit.dart';
 import 'package:tuya_app_sdk_plugin_example/pages/home_page.dart';
@@ -53,7 +56,7 @@ class _LoginPageState extends State<LoginPage> {
     uiBlockingCubit.block();
 
     try {
-      // TODO: bound api
+      await TuyaAppSdkPlugin.loginWithTicket(ticket: ticket);
 
       navigationToHomePage(context);
     } catch (error) {

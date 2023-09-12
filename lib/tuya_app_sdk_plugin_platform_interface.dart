@@ -26,4 +26,22 @@ abstract class TuyaAppSdkPluginPlatform extends PlatformInterface {
   Future<String?> getPlatformVersion() {
     throw UnimplementedError('platformVersion() has not been implemented.');
   }
+
+  Future<void> loginWithTicket({required String ticket}) async {
+    throw UnimplementedError('loginWithTicket() has not been implemented.');
+  }
+
+  Future<void> logout() async {
+    throw UnimplementedError('logout() has not been implemented.');
+  }
+
+  Future<void> pairingDeviceAPMode({
+    required String ssid,
+    required String password,
+    required String token,
+  }) async {
+    throw UnimplementedError(
+      'pairingDeviceAPMode() has not been implemented.',
+    );
+  }
 }

@@ -11,7 +11,43 @@ class MethodChannelTuyaAppSdkPlugin extends TuyaAppSdkPluginPlatform {
 
   @override
   Future<String?> getPlatformVersion() async {
-    final version = await methodChannel.invokeMethod<String>('getPlatformVersion');
+    final version =
+        await methodChannel.invokeMethod<String>('getPlatformVersion');
     return version;
+  }
+
+  @override
+  Future<void> loginWithTicket({required String ticket}) async {
+    final argument = {
+      'ticket': ticket,
+    };
+
+    return await methodChannel.invokeMethod(
+      'loginWithTicket',
+      argument,
+    );
+  }
+
+  @override
+  Future<void> logout() async {
+    return await methodChannel.invokeMethod('logout');
+  }
+
+  @override
+  Future<void> pairingDeviceAPMode({
+    required String ssid,
+    required String password,
+    required String token,
+  }) async {
+    final argument = {
+      'ssid': ssid,
+      'password': password,
+      'token': token,
+    };
+
+    return await methodChannel.invokeMethod(
+      'pairingDeviceAPMode',
+      argument,
+    );
   }
 }

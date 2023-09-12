@@ -1,5 +1,8 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:tuya_app_sdk_plugin/tuya_app_sdk_plugin.dart';
 import 'package:tuya_app_sdk_plugin_example/cubit/alert_dialog_cubit.dart';
 import 'package:tuya_app_sdk_plugin_example/cubit/ui_blocking_cubit.dart';
 import 'package:tuya_app_sdk_plugin_example/pages/login_page.dart';
@@ -85,7 +88,11 @@ class _HomePageState extends State<HomePage> {
     uiBlockingCubit.block();
 
     try {
-      // TODO: bound api
+      await TuyaAppSdkPlugin.pairingDeviceAPMode(
+        ssid: ssid,
+        password: password,
+        token: token,
+      );
 
       alertDialogCubit.alert(title: "Pairing Device Success");
     } catch (error) {
@@ -105,7 +112,7 @@ class _HomePageState extends State<HomePage> {
     uiBlockingCubit.block();
 
     try {
-      // TODO: bound api
+      await TuyaAppSdkPlugin.logout();
 
       navigationToLoginPage(context);
     } on Exception catch (error) {

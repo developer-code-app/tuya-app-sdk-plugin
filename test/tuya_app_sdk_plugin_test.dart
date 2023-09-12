@@ -7,23 +7,41 @@ import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 class MockTuyaAppSdkPluginPlatform
     with MockPlatformInterfaceMixin
     implements TuyaAppSdkPluginPlatform {
-
   @override
   Future<String?> getPlatformVersion() => Future.value('42');
+
+  @override
+  Future<void> loginWithTicket({required String ticket}) {
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<void> logout() {
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<void> pairingDeviceAPMode({
+    required String ssid,
+    required String password,
+    required String token,
+  }) {
+    throw UnimplementedError();
+  }
 }
 
 void main() {
-  final TuyaAppSdkPluginPlatform initialPlatform = TuyaAppSdkPluginPlatform.instance;
+  final TuyaAppSdkPluginPlatform initialPlatform =
+      TuyaAppSdkPluginPlatform.instance;
 
   test('$MethodChannelTuyaAppSdkPlugin is the default instance', () {
     expect(initialPlatform, isInstanceOf<MethodChannelTuyaAppSdkPlugin>());
   });
 
   test('getPlatformVersion', () async {
-    TuyaAppSdkPlugin tuyaAppSdkPlugin = TuyaAppSdkPlugin();
     MockTuyaAppSdkPluginPlatform fakePlatform = MockTuyaAppSdkPluginPlatform();
     TuyaAppSdkPluginPlatform.instance = fakePlatform;
 
-    expect(await tuyaAppSdkPlugin.getPlatformVersion(), '42');
+    expect(await TuyaAppSdkPlugin.getPlatformVersion(), '42');
   });
 }
