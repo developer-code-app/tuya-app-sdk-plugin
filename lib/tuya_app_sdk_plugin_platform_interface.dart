@@ -31,10 +31,6 @@ abstract class TuyaAppSdkPluginPlatform extends PlatformInterface {
     throw UnimplementedError('loginWithTicket() has not been implemented.');
   }
 
-  Future<void> logout() async {
-    throw UnimplementedError('logout() has not been implemented.');
-  }
-
   Future<void> pairingDeviceAPMode({
     required String ssid,
     required String password,

@@ -43,7 +43,6 @@ class TuyaAppSdkPlugin: FlutterPlugin, MethodCallHandler {
     when (call.method) {
       "loginWithTicket" -> loginWithTicket(call, result)
       "pairingDeviceAPMode" -> pairingDeviceAPMode(call, result)
-      "logout" -> logout(call, result)
       else -> result.notImplemented()
     }
   }
@@ -115,22 +114,6 @@ class TuyaAppSdkPlugin: FlutterPlugin, MethodCallHandler {
         null
       )
     }
-  }
-
-  private fun logout(call: MethodCall, result: Result) {
-    ThingHomeSdk.getUserInstance().logout(object : ILogoutCallback {
-      override fun onSuccess() {
-        result.success("SUCCESS")
-      }
-
-      override fun onError(errorCode: String, errorMsg: String) {
-        result.error(
-          errorCode,
-          errorMsg,
-          null
-        )
-      }
-    })
   }
 
   override fun onDetachedFromEngine(@NonNull binding: FlutterPlugin.FlutterPluginBinding) {

@@ -16,11 +16,6 @@ class MockTuyaAppSdkPluginPlatform
   }
 
   @override
-  Future<void> logout() {
-    throw UnimplementedError();
-  }
-
-  @override
   Future<void> pairingDeviceAPMode({
     required String ssid,
     required String password,

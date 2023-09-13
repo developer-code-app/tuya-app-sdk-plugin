@@ -29,11 +29,6 @@ class MethodChannelTuyaAppSdkPlugin extends TuyaAppSdkPluginPlatform {
   }
 
   @override
-  Future<void> logout() async {
-    return await methodChannel.invokeMethod('logout');
-  }
-
-  @override
   Future<void> pairingDeviceAPMode({
     required String ssid,
     required String password,

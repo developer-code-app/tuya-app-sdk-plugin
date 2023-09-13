@@ -20,8 +20,6 @@ public class TuyaAppSdkPlugin: NSObject, FlutterPlugin, ThingSmartActivatorDeleg
       loginWithTicket(call, result: result)
     case "pairingDeviceAPMode":
       pairingDeviceAPMode(call, result: result)
-    case "logout":
-      logout(call, result: result)
     default:
       result(FlutterMethodNotImplemented)
     }
@@ -82,23 +80,6 @@ public class TuyaAppSdkPlugin: NSObject, FlutterPlugin, ThingSmartActivatorDeleg
       password: password,
       token: token,
       timeout: TimeInterval(timeout ?? 60)
-    )
-  }
-    
-  private func logout(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
-    ThingSmartUser.sharedInstance().loginOut(
-      {
-        result("SUCCESS")
-      },
-      failure: { error in
-        let flutterError = FlutterError(
-          code: "LOGOUT_ERROR",
-          message: error?.localizedDescription,
-          details: nil
-        );
-          
-        result(flutterError)
-      }
     )
   }
 

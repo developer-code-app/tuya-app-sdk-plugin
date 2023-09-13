@@ -11,10 +11,6 @@ class TuyaAppSdkPlugin {
     );
   }
 
-  static Future<void> logout() async {
-    return TuyaAppSdkPluginPlatform.instance.logout();
-  }
-
   static Future<void> pairingDeviceAPMode({
     required String ssid,
     required String password,

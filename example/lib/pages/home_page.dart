@@ -70,7 +70,7 @@ class _HomePageState extends State<HomePage> {
             'Log Out',
             style: TextStyle(color: Colors.white),
           ),
-          onPressed: () => _logout(context),
+          onPressed: () => navigationToLoginPage(context),
         )
       ],
     );
@@ -100,23 +100,6 @@ class _HomePageState extends State<HomePage> {
         title: "Pairing Device Error",
         message: error.toString(),
       );
-    } finally {
-      uiBlockingCubit.unblock();
-    }
-  }
-
-  Future<void> _logout(BuildContext context) async {
-    final alertDialogCubit = context.read<AlertDialogCubit>();
-    final uiBlockingCubit = context.read<UIBlockingCubit>();
-
-    uiBlockingCubit.block();
-
-    try {
-      await TuyaAppSdkPlugin.logout();
-
-      navigationToLoginPage(context);
-    } on Exception catch (error) {
-      alertDialogCubit.errorAlert(error: error);
     } finally {
       uiBlockingCubit.unblock();
     }
