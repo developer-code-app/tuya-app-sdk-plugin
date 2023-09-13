@@ -5,7 +5,6 @@ import android.content.ContentValues.TAG
 import android.content.Context
 import androidx.annotation.NonNull
 import com.thingclips.smart.android.user.api.ILoginCallback
-import com.thingclips.smart.android.user.api.ILogoutCallback
 import com.thingclips.smart.android.user.bean.User
 import com.thingclips.smart.home.sdk.ThingHomeSdk
 import com.thingclips.smart.home.sdk.builder.ActivatorBuilder
@@ -28,13 +27,20 @@ class TuyaAppSdkPlugin: FlutterPlugin, MethodCallHandler {
   /// when the Flutter Engine is detached from the Activity
   private lateinit var channel : MethodChannel
   private var thingActivator: IThingActivator? = null
-  private var applicationContext: Context? = null
+  private var context: Context? = null
+
+  companion object {
+    fun setupTuyaSDK(application: Application) {
+      ThingHomeSdk.init(application)
+    }
+
+    fun destroy() {
+      ThingHomeSdk.onDestroy()
+    }
+  }
 
   override fun onAttachedToEngine(@NonNull flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
-    applicationContext = flutterPluginBinding.applicationContext
-
-    ThingHomeSdk.init(applicationContext as Application)
-
+    context = flutterPluginBinding.applicationContext
     channel = MethodChannel(flutterPluginBinding.binaryMessenger, "tuya_app_sdk_plugin")
     channel.setMethodCallHandler(this)
   }
@@ -81,7 +87,7 @@ class TuyaAppSdkPlugin: FlutterPlugin, MethodCallHandler {
 
     if (ssid.isNotEmpty() && password.isNotEmpty() && token.isNotEmpty()) {
       val builder =  ActivatorBuilder()
-        .setContext(applicationContext)
+        .setContext(context)
         .setSsid(ssid)
         .setPassword(password)
         .setActivatorModel(ActivatorModelEnum.THING_AP)
