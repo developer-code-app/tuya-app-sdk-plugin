@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
+import 'package:tuya_app_sdk_plugin/tuya_options.dart';
 
 import 'tuya_app_sdk_plugin_platform_interface.dart';
 
@@ -14,6 +15,16 @@ class MethodChannelTuyaAppSdkPlugin extends TuyaAppSdkPluginPlatform {
     final version =
         await methodChannel.invokeMethod<String>('getPlatformVersion');
     return version;
+  }
+
+  @override
+  Future<void> initializeApp({required TuyaOptions options}) async {
+    final argument = {
+      "app_key": options.appKey,
+      "secret_key": options.secretKey,
+    };
+
+    return await methodChannel.invokeMethod('initializeApp', argument);
   }
 
   @override

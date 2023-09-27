@@ -16,6 +16,8 @@ public class TuyaAppSdkPlugin: NSObject, FlutterPlugin, ThingSmartActivatorDeleg
 
   public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
     switch call.method {
+    case "initializeApp":
+      initializeApp(call, result: result)
     case "loginWithTicket":
       loginWithTicket(call, result: result)
     case "pairingDeviceAPMode":
@@ -23,6 +25,29 @@ public class TuyaAppSdkPlugin: NSObject, FlutterPlugin, ThingSmartActivatorDeleg
     default:
       result(FlutterMethodNotImplemented)
     }
+  }
+
+  private func initializeApp(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
+    guard
+      let args = call.arguments as? Dictionary<String, Any>,
+      let appKey = args["app_key"] as? String,
+      let secretKey = args["secret_key"] as? String
+    else {
+      let flutterError = FlutterError(
+        code: "ARGUMENTS_ERROR",
+        message: "Arguments missing.",
+        details: nil
+      );
+
+      return result(flutterError)
+    }
+
+    ThingSmartSDK.sharedInstance().start(
+      withAppKey: appKey,
+      secretKey: secretKey
+    )
+
+    result("SUCCESS")
   }
 
   private func loginWithTicket(_ call: FlutterMethodCall, result: @escaping FlutterResult) {

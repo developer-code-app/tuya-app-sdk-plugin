@@ -1,4 +1,5 @@
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
+import 'package:tuya_app_sdk_plugin/tuya_options.dart';
 
 import 'tuya_app_sdk_plugin_method_channel.dart';
 
@@ -25,6 +26,10 @@ abstract class TuyaAppSdkPluginPlatform extends PlatformInterface {
 
   Future<String?> getPlatformVersion() {
     throw UnimplementedError('platformVersion() has not been implemented.');
+  }
+
+  Future<void> initializeApp({required TuyaOptions options}) async {
+    throw UnimplementedError('initializeApp() has not been implemented.');
   }
 
   Future<void> loginWithTicket({required String ticket}) async {

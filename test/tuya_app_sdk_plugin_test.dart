@@ -3,6 +3,7 @@ import 'package:tuya_app_sdk_plugin/tuya_app_sdk_plugin.dart';
 import 'package:tuya_app_sdk_plugin/tuya_app_sdk_plugin_platform_interface.dart';
 import 'package:tuya_app_sdk_plugin/tuya_app_sdk_plugin_method_channel.dart';
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
+import 'package:tuya_app_sdk_plugin/tuya_options.dart';
 
 class MockTuyaAppSdkPluginPlatform
     with MockPlatformInterfaceMixin
@@ -21,6 +22,11 @@ class MockTuyaAppSdkPluginPlatform
     required String password,
     required String token,
   }) {
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<void> initializeApp({required TuyaOptions options}) {
     throw UnimplementedError();
   }
 }

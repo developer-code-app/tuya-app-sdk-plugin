@@ -30,10 +30,6 @@ class TuyaAppSdkPlugin: FlutterPlugin, MethodCallHandler {
   private var context: Context? = null
 
   companion object {
-    fun setupTuyaSDK(application: Application) {
-      ThingHomeSdk.init(application)
-    }
-
     fun destroy() {
       ThingHomeSdk.onDestroy()
     }
@@ -47,9 +43,26 @@ class TuyaAppSdkPlugin: FlutterPlugin, MethodCallHandler {
 
   override fun onMethodCall(@NonNull call: MethodCall, @NonNull result: Result) {
     when (call.method) {
+      "initializeApp" -> initializeApp(call, result)
       "loginWithTicket" -> loginWithTicket(call, result)
       "pairingDeviceAPMode" -> pairingDeviceAPMode(call, result)
       else -> result.notImplemented()
+    }
+  }
+
+  private fun initializeApp(call: MethodCall, result: Result) {
+    val appKey = call.argument<String>("app_key") ?: ""
+    val secretKey = call.argument<String>("secret_key") ?: ""
+
+    if (appKey.isNotEmpty() && secretKey.isNotEmpty()) {
+      ThingHomeSdk.init(context as Application, appKey, secretKey)
+      result.success("SUCCESS")
+    } else {
+      result.error(
+        "ARGUMENTS_ERROR",
+        "Arguments missing.",
+        null
+      )
     }
   }
 
