@@ -109,7 +109,7 @@ PODS:
   - ThingSmartUtil (5.2.3):
     - ThingMbedtls (= 3.3.0)
     - ThingOpenSSLSDK (~> 1.1.1-t.0)
-  - tuya_app_sdk_plugin (0.0.1):
+  - tuya_app_sdk_plugin (0.0.2):
     - Flutter
     - ThingSmartHomeKit (~> 5.1.0)
   - YYModel (1.0.4)
@@ -187,7 +187,7 @@ SPEC CHECKSUMS:
   ThingSmartSocketChannelKit: c9d0f3db7782b7be3a515c34a66bf32898c6ab28
   ThingSmartTimerKit: a4c2852403737f6f82d7b4cc30b90c6ef66ff480
   ThingSmartUtil: 26f08b6bd8b90bbd9fa9c641187b0181925186e7
-  tuya_app_sdk_plugin: dbb808c83563ec9072ae4beecb20a4cade947641
+  tuya_app_sdk_plugin: 6f21034df6b6cdda75e7df6abef72f9c22ffa245
   YYModel: 2a7fdd96aaa4b86a824e26d0c517de8928c04b30
 
 PODFILE CHECKSUM: c471f27bea051a1b01b8e21527f549358875aff7
