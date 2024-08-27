@@ -7,7 +7,7 @@ class BaseApplication : Application() {
     override fun onCreate() {
         super.onCreate()
 
-        TuyaAppSdkPlugin.setupTuyaSDK(this)
+        // TuyaAppSdkPlugin.setupTuyaSDK(this)
     }
 
     override fun onTerminate() {

@@ -1,7 +1,8 @@
 {
-    "cSpell.words": [
-        "cupertino",
-        "tuya"
-    ],
-    "java.configuration.updateBuildConfiguration": "automatic"
+  "cSpell.words": [
+    "cupertino",
+    "tuya"
+  ],
+  "java.configuration.updateBuildConfiguration": "automatic",
+  "dart.flutterSdkPath": ".fvm/versions/3.19.6"
 }
